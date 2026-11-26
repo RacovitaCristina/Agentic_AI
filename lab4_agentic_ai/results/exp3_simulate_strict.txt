@@ -1,0 +1,39 @@
+# 2026-11-26T01:29:52+02:00 model=gemini-3.5-flash-lite  (--strict stretch)
+[Traveler] Plan me a nice 4-day trip in May.
+
+[Planner] What city are you traveling from?
+[Traveler] I'm flying out of Iasi with a friend.
+
+[Planner] What destination would you like to visit?
+  .. rate limited (429), waiting 20 s
+[Traveler] I have no destination in mind yet, so could you suggest somewhere in Italy?
+
+[Planner] What are the exact dates for your trip in May?
+[Traveler] We want to go from the 12th to the 16th of May.
+
+[Planner] What is your total budget in EUR for this trip?
+[Traveler] Our total budget for the trip is 1000 EUR.
+
+[Planner] What are your main interests or what do you enjoy doing on this trip?
+[Traveler] I love exploring old history and trying out local street food, but I really hate waking up early.
+
+[Planner] What pace would you prefer for your trip: relaxed, balanced, or packed?
+[Traveler] I'd definitely prefer a relaxed pace, especially since I hate early mornings!
+
+[Brief after 6 questions] missing: nothing
+{
+  "origin": "Iasi",
+  "destination": "Italy",
+  "dates": "12-16 May",
+  "travelers": 2,
+  "budget_eur": 1000,
+  "interests": [
+    "history",
+    "local street food"
+  ],
+  "pace": "relaxed",
+  "avoid": [
+    "waking up early",
+    "early mornings"
+  ]
+}

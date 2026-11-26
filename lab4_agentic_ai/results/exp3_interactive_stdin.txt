@@ -1,0 +1,35 @@
+# 2026-11-26T01:31:09+02:00 model=gemini-3.5-flash-lite  (interactive mode, scripted stdin answers in a fixed order)
+[Traveler] Plan me a nice 4-day trip in May.
+
+[Planner] Where are you starting your trip from?
+> [Traveler] From Iasi.
+
+[Planner] Where would you like to go?
+> [Traveler] Somewhere in Italy, please suggest a city.
+
+[Planner] How many travelers are going?
+> [Traveler] 12 to 16 May.
+
+[Planner] How many travelers are going?
+> [Traveler] Two people.
+
+[Planner] What is your total budget in EUR for this trip?
+> [Traveler] 1000 EUR in total.
+
+[Planner] What are your main interests for this trip?
+> [Traveler] Street food and old history.
+
+[Brief after 6 questions] missing: nothing
+{
+  "origin": "Iasi",
+  "destination": "Italy",
+  "dates": "12-16 May",
+  "travelers": 2,
+  "budget_eur": 1000,
+  "interests": [
+    "street food",
+    "old history"
+  ],
+  "pace": null,
+  "avoid": []
+}

@@ -1,0 +1,107 @@
+# 2026-11-26T01:39:53+02:00 model=gemini-3.5-flash-lite  loop 3 --runs 3 --verbose (no sum_eur)
+| question | mode | correct | LLM calls | input tokens | tool seconds | total seconds |
+|---|---|---|---|---|---|---|
+  .. provider error 503, retrying in 5s
+
+--- [Step 1/8] input tokens: 476 ---
+  -> [Tool Call] flight_price({"date": "12 May", "origin": "Iasi", "destination": "Lisbon"})
+  <- [Tool Output] No direct flight Iasi-Lisbon. Connect via Bucharest: price Iasi->Bucharest and Bucharest->Lisbon.
+  -> [Tool Call] hotel_price({"nights": 3, "city": "Lisbon"})
+  <- [Tool Output] {"city": "Lisbon", "nights": 3, "total_eur": 222}
+
+--- [Step 2/8] input tokens: 601 ---
+  -> [Tool Call] flight_price({"date": "12 May", "destination": "Bucharest", "origin": "Iasi"})
+  <- [Tool Output] {"route": "Iasi->Bucharest", "date": "12 May", "price_eur": 39}
+  -> [Tool Call] flight_price({"origin": "Bucharest", "destination": "Lisbon", "date": "12 May"})
+  <- [Tool Output] {"route": "Bucharest->Lisbon", "date": "12 May", "price_eur": 167}
+
+--- [Step 3/8] input tokens: 744 ---
+
+--- [Step 1/8] input tokens: 476 ---
+  -> [Tool Call] flight_price({"origin": "Iasi", "date": "12 May", "destination": "Lisbon"})
+  <- [Tool Output] No direct flight Iasi-Lisbon. Connect via Bucharest: price Iasi->Bucharest and Bucharest->Lisbon.
+  -> [Tool Call] hotel_price({"city": "Lisbon", "nights": 3})
+  <- [Tool Output] {"city": "Lisbon", "nights": 3, "total_eur": 222}
+
+--- [Step 2/8] input tokens: 601 ---
+  -> [Tool Call] flight_price({"destination": "Bucharest", "date": "12 May", "origin": "Iasi"})
+  <- [Tool Output] {"route": "Iasi->Bucharest", "date": "12 May", "price_eur": 39}
+  -> [Tool Call] flight_price({"date": "12 May", "destination": "Lisbon", "origin": "Bucharest"})
+  <- [Tool Output] {"route": "Bucharest->Lisbon", "date": "12 May", "price_eur": 167}
+
+--- [Step 3/8] input tokens: 744 ---
+  .. provider error 503, retrying in 5s
+
+--- [Step 1/8] input tokens: 476 ---
+  -> [Tool Call] flight_price({"destination": "Lisbon", "date": "12 May", "origin": "Iasi"})
+  <- [Tool Output] No direct flight Iasi-Lisbon. Connect via Bucharest: price Iasi->Bucharest and Bucharest->Lisbon.
+  -> [Tool Call] hotel_price({"nights": 3, "city": "Lisbon"})
+  <- [Tool Output] {"city": "Lisbon", "nights": 3, "total_eur": 222}
+
+--- [Step 2/8] input tokens: 601 ---
+  -> [Tool Call] flight_price({"date": "12 May", "destination": "Bucharest", "origin": "Iasi"})
+  <- [Tool Output] {"route": "Iasi->Bucharest", "date": "12 May", "price_eur": 39}
+  -> [Tool Call] flight_price({"date": "12 May", "destination": "Lisbon", "origin": "Bucharest"})
+  <- [Tool Output] {"route": "Bucharest->Lisbon", "date": "12 May", "price_eur": 167}
+
+--- [Step 3/8] input tokens: 744 ---
+| 3 | loop | 3/3 | 3 | 1,821 | 4.0 | 22.2 |
+
+# 2026-11-26T01:41:02+02:00 loop 3 --runs 3 --sum --verbose
+| question | mode | correct | LLM calls | input tokens | tool seconds | total seconds |
+|---|---|---|---|---|---|---|
+
+--- [Step 1/8] input tokens: 602 ---
+  -> [Tool Call] flight_price({"origin": "Iasi", "date": "12 May", "destination": "Lisbon"})
+  <- [Tool Output] No direct flight Iasi-Lisbon. Connect via Bucharest: price Iasi->Bucharest and Bucharest->Lisbon.
+  -> [Tool Call] hotel_price({"city": "Lisbon", "nights": 3})
+  <- [Tool Output] {"city": "Lisbon", "nights": 3, "total_eur": 222}
+
+--- [Step 2/8] input tokens: 727 ---
+  -> [Tool Call] flight_price({"date": "12 May", "origin": "Iasi", "destination": "Bucharest"})
+  <- [Tool Output] {"route": "Iasi->Bucharest", "date": "12 May", "price_eur": 39}
+  -> [Tool Call] flight_price({"destination": "Lisbon", "date": "12 May", "origin": "Bucharest"})
+  <- [Tool Output] {"route": "Bucharest->Lisbon", "date": "12 May", "price_eur": 167}
+
+--- [Step 3/8] input tokens: 870 ---
+  -> [Tool Call] sum_eur({"amounts": [39, 167, 222]})
+  <- [Tool Output] {"amounts": ["39", "167", "222"], "total_eur": "428"}
+
+--- [Step 4/8] input tokens: 933 ---
+
+--- [Step 1/8] input tokens: 602 ---
+  -> [Tool Call] flight_price({"destination": "Lisbon", "origin": "Iasi", "date": "12 May"})
+  <- [Tool Output] No direct flight Iasi-Lisbon. Connect via Bucharest: price Iasi->Bucharest and Bucharest->Lisbon.
+  -> [Tool Call] hotel_price({"nights": 3, "city": "Lisbon"})
+  <- [Tool Output] {"city": "Lisbon", "nights": 3, "total_eur": 222}
+
+--- [Step 2/8] input tokens: 727 ---
+  -> [Tool Call] flight_price({"origin": "Iasi", "date": "12 May", "destination": "Bucharest"})
+  <- [Tool Output] {"route": "Iasi->Bucharest", "date": "12 May", "price_eur": 39}
+  -> [Tool Call] flight_price({"destination": "Lisbon", "date": "12 May", "origin": "Bucharest"})
+  <- [Tool Output] {"route": "Bucharest->Lisbon", "date": "12 May", "price_eur": 167}
+
+--- [Step 3/8] input tokens: 870 ---
+  -> [Tool Call] sum_eur({"amounts": [39, 167, 222]})
+  <- [Tool Output] {"amounts": ["39", "167", "222"], "total_eur": "428"}
+
+--- [Step 4/8] input tokens: 933 ---
+
+--- [Step 1/8] input tokens: 602 ---
+  -> [Tool Call] flight_price({"origin": "Iasi", "date": "12 May", "destination": "Lisbon"})
+  <- [Tool Output] No direct flight Iasi-Lisbon. Connect via Bucharest: price Iasi->Bucharest and Bucharest->Lisbon.
+  -> [Tool Call] hotel_price({"nights": 3, "city": "Lisbon"})
+  <- [Tool Output] {"city": "Lisbon", "nights": 3, "total_eur": 222}
+
+--- [Step 2/8] input tokens: 727 ---
+  -> [Tool Call] flight_price({"destination": "Bucharest", "date": "12 May", "origin": "Iasi"})
+  <- [Tool Output] {"route": "Iasi->Bucharest", "date": "12 May", "price_eur": 39}
+  -> [Tool Call] flight_price({"date": "12 May", "destination": "Lisbon", "origin": "Bucharest"})
+  <- [Tool Output] {"route": "Bucharest->Lisbon", "date": "12 May", "price_eur": 167}
+
+--- [Step 3/8] input tokens: 870 ---
+  -> [Tool Call] sum_eur({"amounts": [39, 167, 222]})
+  <- [Tool Output] {"amounts": ["39", "167", "222"], "total_eur": "428"}
+
+--- [Step 4/8] input tokens: 933 ---
+| 3 | loop | 3/3 | 4 | 3,132 | 4.0 | 15.6 |

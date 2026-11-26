@@ -1,0 +1,69 @@
+# 2026-11-26T01:44:59+02:00 model=gemini-3.5-flash-lite  python hw_b_nights.py
+
+== plain retries
+   run 1
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+  .. rate limited (429), waiting 20 s
+     attempt 2: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 3: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+   -> FAILED after 3 attempts, 405 tokens
+   run 2
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 2: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 3: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+   -> FAILED after 3 attempts, 405 tokens
+   run 3
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 2: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 3: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+   -> FAILED after 3 attempts, 405 tokens
+   run 4
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 2: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 3: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+   -> FAILED after 3 attempts, 405 tokens
+   run 5
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 2: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+     attempt 3: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+   -> FAILED after 3 attempts, 405 tokens
+== plain retries: 0/5 solved, attempts until success [], tokens on average 405
+
+== with lessons
+   run 1
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+  .. rate limited (429), waiting 20 s
+       lesson: The function failed because the check-out date was earlier than the check-in date, resulting in a negative number instead of raising an error. I will add a check to ensure `check_out >= check_in` and raise a `ValueError` if it is not.
+     attempt 2: ALL PASSED
+   -> success after 2 attempts, 625 tokens
+   run 2
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+       lesson: The function failed because the check-out date was earlier than the check-in date, resulting in a negative number of nights instead of raising an error. To fix this, I will add a validation check to ensure `check_out` is strictly after `check_in` and raise a `ValueError` otherwise.
+     attempt 2: nights_between('2027-05-12', '2027-05-12'): expected 0, got 'raised ValueError: Check-out date must be strictl
+       lesson: The function failed because it disallowed same-day check-ins by requiring the check-out date to be strictly after the check-in date, whereas the test case expected 0 nights for the same date. I will change the validation condition to `d2 < d1` so that `(d2 - d1).days` correctly returns 0 for identic
+     attempt 3: ALL PASSED
+   -> success after 3 attempts, 1270 tokens
+   run 3
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+       lesson: The function failed because the check-out date was earlier than the check-in date, resulting in a negative number of nights instead of raising an error. I will add a validation check to raise a `ValueError` if `check_out` is not strictly after `check_in`.
+     attempt 2: nights_between('2027-05-12', '2027-05-12'): expected 0, got 'raised ValueError: Check-out date must be strictl
+       lesson: The test case expected `0` nights for the same check-in and check-out dates, but my code raised an error because it incorrectly required the check-out date to be strictly later. I will remove the `if d2 <= d1:` check so that `(d2 - d1).days` naturally returns `0` when both dates are the same.
+     attempt 3: ALL PASSED
+   -> success after 3 attempts, 1251 tokens
+   run 4
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+       lesson: The function failed because the check-out date was earlier than the check-in date, resulting in a negative number of nights instead of raising an error. To fix this, I will add a check to ensure `check_out` is strictly after `check_in`, raising a `ValueError` otherwise.
+  .. rate limited (429), waiting 20 s
+     attempt 2: nights_between('2027-05-12', '2027-05-12'): expected 0, got 'raised ValueError: Check-out date must be strictl
+       lesson: The function failed because it disallowed same-day check-ins by requiring the check-out date to be strictly after the check-in date. I will change the validation condition from strictly greater (`d2 <= d1`) to allow same-day stays (`d2 < d1`) so that a zero-night stay returns 0.
+     attempt 3: ALL PASSED
+   -> success after 3 attempts, 1250 tokens
+   run 5
+     attempt 1: nights_between('2027-05-16', '2027-05-12'): expected raises, got -4
+       lesson: The test failed because the `check_out` date occurred before the `check_in` date, which should be considered invalid for a hotel stay. I will add a check to raise a `ValueError` if the check-out date is less than or equal to the check-in date.
+     attempt 2: nights_between('2027-05-12', '2027-05-12'): expected 0, got 'raised ValueError: Check-out date must be after c
+       lesson: The test failed because the original implementation incorrectly raised an error for same-day stays where check-in and check-out dates are identical, expecting 0 nights instead. I will change the validation condition from strictly less than (`date_out <= date_in`) to strictly less than or equal (`dat
+     attempt 3: ALL PASSED
+   -> success after 3 attempts, 1269 tokens
+== with lessons: 5/5 solved, attempts until success [2, 3, 3, 3, 3], tokens on average 1133
+# finished 2026-11-26T01:47:40+02:00

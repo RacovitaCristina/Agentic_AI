@@ -1,0 +1,23 @@
+# 2026-11-26T01:28:03+02:00 model=gemini-3.5-flash-lite
+
+== plain: 0/5 valid, 211 output tokens on average
+   Colosseum: cannot start at 11:30
+   Borghese Gallery: cannot start at 11:30
+   Colosseum: cannot start at 11:30
+   Colosseum: cannot start at 14:30
+   Colosseum: cannot start at 11:30
+
+== hint in the prompt, JSON only: 0/5 valid, 211 output tokens on average
+   Colosseum: cannot start at 11:30
+   Colosseum: cannot start at 11:30
+   Colosseum: cannot start at 11:30
+   Colosseum: cannot start at 11:30
+   Colosseum: cannot start at 11:30
+
+== hint + a field to plan in: 2/5 valid, 758 output tokens on average
+   Colosseum: cannot start at 11:30
+   Colosseum: cannot start at 11:30
+   ok
+   ok
+   Colosseum: cannot start at 11:30
+   chosen: 09:00 Borghese Gallery | 12:00 Lunch | 14:00 Colosseum | 16:30 Pantheon | 18:00 Trastevere food walk

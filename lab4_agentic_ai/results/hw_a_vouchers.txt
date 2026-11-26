@@ -1,0 +1,29 @@
+# 2026-11-26T01:42:03+02:00 model=gemini-3.5-flash-lite  python hw_a_vouchers.py
+
+##### vouchers (4, 9, 10, 13) -> EUR 24
+   OK    (13 - 9) * (10 - 4)
+   OK    (13 - 9) * (10 - 4)
+   OK    (13 - 9) * (10 - 4)
+   OK    (13 - 9) * (10 - 4)
+   OK    (13 - 9) * (10 - 4)
+== direct (4, 9, 10, 13): 5/5 correct, 5 calls, 305 input + 1455 output tokens
+   step 1: 3 new states (0 still solvable), kept 3 (0 still solvable): 4, 10, 22 | 9, 10, 9 | 9, 13, 14
+  .. rate limited (429), waiting 20 s
+  .. rate limited (429), waiting 20 s
+   step 2: 9 new states (0 still solvable), kept 3 (0 still solvable): 4, 32 | 10, 18 | 10, 11/2
+   step 3: 7 new states (0 still solvable), kept 3 (0 still solvable): 28 | 128 | 8
+== search (4, 9, 10, 13): no solution, 19 calls, 991 input + 1741 output tokens
+
+##### vouchers (1, 5, 5, 5) -> EUR 24
+   OK    5 * (5 - 1 / 5)
+   OK    5*(5-1/5)
+   OK    5 * (5 - 1 / 5)
+   OK    5 * (5 - 1 / 5)
+   OK    5 * (5 - 1 / 5)
+== direct (1, 5, 5, 5): 5/5 correct, 5 calls, 295 input + 392 output tokens
+   step 1: 3 new states (0 still solvable), kept 3 (0 still solvable): 1, 5, 10 | 1, 5, 25 | 5, 5, 4
+   step 2: 7 new states (0 still solvable), kept 3 (0 still solvable): 1, 15 | 1, 5 | 1, 50
+  .. rate limited (429), waiting 20 s
+   step 3: 9 new states (0 still solvable), kept 3 (0 still solvable): 16 | 14 | 15
+== search (1, 5, 5, 5): no solution, 17 calls, 891 input + 1496 output tokens
+# finished 2026-11-26T01:44:59+02:00

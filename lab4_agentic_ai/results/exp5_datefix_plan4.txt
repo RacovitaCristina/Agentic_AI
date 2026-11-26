@@ -1,0 +1,10 @@
+# 2026-11-26T01:39:32+02:00 model=gemini-3.5-flash-lite  date fix check: plan 4 --runs 2 --verbose
+| question | mode | correct | LLM calls | input tokens | tool seconds | total seconds |
+|---|---|---|---|---|---|---|
+   s1 = nearest_airport(town=Vaslui) -> Iasi
+   s2 = flight_price(origin=@s1, destination=Rome, date=12 May) -> {"route": "Iasi->Rome", "date": "12 May", "price_eur": 142}
+   s3 = flight_price(origin=@s1, destination=Barcelona, date=12 May) -> {"route": "Iasi->Barcelona", "date": "12 May", "price_eur": 118}
+   s1 = nearest_airport(town=Vaslui) -> Iasi
+   s2 = flight_price(origin=@s1, destination=Rome, date=2027-05-12) -> {"route": "Iasi->Rome", "date": "2027-05-12", "price_eur": 142}
+   s3 = flight_price(origin=@s1, destination=Barcelona, date=2027-05-12) -> {"route": "Iasi->Barcelona", "date": "2027-05-12", "price_eur": 118}
+| 4 | plan | 2/2 | 2 | 348 | 3.0 | 9.2 |
